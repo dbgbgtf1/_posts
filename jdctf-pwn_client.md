@@ -75,21 +75,21 @@ if __name__ == "__main__":
 说了半天终于到了题目漏洞了，这也是当天比赛卡住我的地方。
 该题的二进制程序在与服务端建立socket链接后会有四次的来回通讯，其中每次都有对`Message`对象中magic数，opcode的效验，并且除了第三次的cont可以任意由我们编写之外，其余每次的cont都必须固定并且由一样的效验。
 问题就出在这第三次的cont(其实想想也很明显了，一般都是cont这种有大额输入的地方才好动手脚藏点东西，当时也想到了可能时cont但是没有细想，可惜了)
-![processResponseContent](/jdctf-pwn_client/unhex_ida.png)
+![processResponseContent](/unhex_ida.png)
 在`processResponseContent`函数中，第三次的cont会被传入`unhex`函数(如下图所示)
-![unhex_arg](/jdctf-pwn_client/unhex_gdb.png)
+![unhex_arg](/unhex_gdb.png)
 在unhex函数里面的操作是这样的，我太蠢了qwq。比赛当天没看懂什么意思(虽然后来也没看懂，半懂不懂的)。
 于是询问gpt，其实就是把16进制的**字符**换成16进制**字节**储存，并且跳过非法字符，把最终结果放在`char* a2`上，比如我输入的数据是'1244abdfhhhhaaaa'，那么经过`unhex`函数，在`char* a2`上的形式就是
 ```
 '\x12\x44\xab\xdf' + '原来的两个字节的数据' + '\xaa\xaa'
 ```
 并且在其中没有对于长度的检查！(为什么我当时就没有反应过来www)
-![unhex](jdctf-pwn_client/unhex_ida2.png)
+![unhex](/unhex_ida2.png)
 
 那么就意味着我们可以在`unhex中的char* a2`上写入任意长度的数据。
 
 一步步追踪得到指针a2指向的其实是`check_opmsg_sendrecv`函数中的一个栈上变量。
-![check_opmsg_sendrecv](jdctf-pwn_client/track1.png)
+![check_opmsg_sendrecv](/track1.png)
 ## 漏洞利用
 既然我们可以在该函数的栈上变量读入任意可控长度，那就直接栈溢出就好了，这题的保护没有PIE，有canary。
 但是canary可以通过读入非法字符来跳过写入。
