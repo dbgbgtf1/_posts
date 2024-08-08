@@ -1,0 +1,15 @@
+syntax = "proto3";
+
+enum Opcode {
+    OP_HELLO = 0;
+    OP_SESSION = 1;
+    OP_MSG = 2;
+    OP_END = 3;
+}
+
+message Message {
+    int32 magic = 1;
+    int32 seq = 2;
+    Opcode opcode = 3;
+    bytes cont = 4;
+}
