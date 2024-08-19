@@ -27,10 +27,10 @@ exit
 ![__run_exit_handlers_call_IO_cleanup](__run_exit_handlers_call_IO_cleanup.png)
 这里依然没有任何需要满足的条件
 ### _IO_cleanup->_IO_flush_all_lockp
-![_IO_cleanup->_IO_flush_all_lockp.png](_IO_cleanup_call_IO_flush_all_lockp.png)
+![_IO_cleanup->_IO_flush_all_lockp](_IO_cleanup_call_IO_flush_all_lockp.png)
 这是不需要满足条件的最后一步，接下来几乎每一层都有特定条件需要满足
 ### _IO_flush_all_lockp->_IO_OVERFLOW
-![_IO_flush_all_lockp->_IO_OVERFLOW.png](_IO_flush_all_lockp_call_IO_OVERFLOW.png)
+![_IO_flush_all_lockp->_IO_OVERFLOW](_IO_flush_all_lockp_call_IO_OVERFLOW.png)
 
 ```    
 if  (
