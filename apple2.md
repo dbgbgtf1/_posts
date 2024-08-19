@@ -21,16 +21,16 @@ exit
 ```
 本文就以沿着这条链子的调试过程作为线索，找到houseofapple2的最低触发条件
 ### exit->__run_exit_handlers
-![exit_call->run_exit_handlers](exit_call__run_exit_handlers.png)
+![exit_call__run_exit_handlers](exit_call__run_exit_handlers.png)
 这里没有任何需要满足的条件，从图中右上源码上也可看出
 ### __run_exit_handlers->IO_cleanup
-![__run_exit_handlers_call_IO_cleanup](__run_exit_handlers_call_io_cleanup.png)
+![run_exit_handlers_call_IO_cleanup](run_exit_handlers_call_IO_cleanup.png)
 这里依然没有任何需要满足的条件
 ### _IO_cleanup->_IO_flush_all_lockp
-![_IO_cleanup->_IO_flush_all_lockp](io_cleanup_call_IO_flush_all_lockp.png)
+![io_cleanup_call_IO_flush_all_lockp](io_cleanup_call_IO_flush_all_lockp.png)
 这是不需要满足条件的最后一步，接下来几乎每一层都有特定条件需要满足
 ### _IO_flush_all_lockp->_IO_OVERFLOW
-![_IO_flush_all_lockp->_IO_OVERFLOW](io_flush_all_lockp_call_io_overflow.png)
+![io_flush_all_lockp_call_io_overflow](io_flush_all_lockp_call_io_overflow.png)
 
 ```    
 if  (
@@ -55,7 +55,7 @@ if  (
 ```
 中选择一个满足，这时候我们为了后面的条件同时满足，只能选择前者。
 ### _IO_OVERFLOW->_IO_wdoallocbuf
-![_IO_OVERFLOW->_IO_wdoallocbuf](io_overflow_call_io_wdoallocbuf.png)
+![io_overflow_call_io_wdoallocbuf](io_overflow_call_io_wdoallocbuf.png)
 在这张图中可以看到必须不满足`if (f->_flags & _IO_NO_WRITES)`以及满足
 ```
 if ((f->_flags & _IO_CURRENTLY_PUTTING) == 0)
@@ -64,7 +64,7 @@ if ((f->_flags & _IO_CURRENTLY_PUTTING) == 0)
 ```
 才可以进入`_IO_wdoallocbuf(f)`
 
-![macro_define](flags_macro_define.png)
+![flags_macro_define](flags_macro_define.png)
 根据查询glibc源码，我们发现`_IO_CURRENTLY_PUTTING`的值为0x800
 [roderick](https://bbs.kanxue.com/thread-273832.htm#%E5%88%A9%E7%94%A8_io_wfile_overflow%E5%87%BD%E6%95%B0%E6%8E%A7%E5%88%B6%E7%A8%8B%E5%BA%8F%E6%89%A7%E8%A1%8C%E6%B5%81)发现只要将`_flags`设置为0x68732020，就可以绕过关于flag的各种条件。在这里(0x68732020 & 0x800 = 0)
 
@@ -137,4 +137,4 @@ int main()
 ```
 # 小表格
 有时候在查找_IO_FILE_plus以及_wide_data对应的值的时候比较麻烦，就搞了一个小表格
-![_IO_FILE_plus & _wide_data structure](IO_FILE.png)
+![IO_FILE](IO_FILE.png)
