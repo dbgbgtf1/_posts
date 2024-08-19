@@ -1,5 +1,5 @@
 ---
-title: jdctf-pwn_client
+title: jdctf-pwn克莱恩特
 date: 2024-08-08 11:00:00
 tags: 赛后诸葛亮系列
 categories: ctf
