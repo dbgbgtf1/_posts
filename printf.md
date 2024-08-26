@@ -81,7 +81,7 @@ _Noreturn main()
 ![vfprintf_internal](./vfprintf_internal.png)
 图中可以看到`vfprintf_internal`的返回地址为`fprintf`正好是libc的地址。
 ![stack](./stack.png)
-而且距离p指针正好在0x100内，如果返回地址的最后两位为0x08，那么p指针就必然是0xf8。
+而且距离p指针正好在0x100内，如果返回地址的最后两位为0xf8，那么p指针就必然是0xf8。
 考虑到返回地址最后两位为0x08的概率为1/16，目前为止这个概率完全能够接受。
 ### 逐步编写exp
 在以上这些之后，思路其实就很清晰了。
