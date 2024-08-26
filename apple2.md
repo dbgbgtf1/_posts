@@ -1,7 +1,7 @@
 ---
 title: houseofapple2
 date: 2024-8-19
-tags: house系列
+tags: houseof
 categories: ctf
 ---
 # 前言

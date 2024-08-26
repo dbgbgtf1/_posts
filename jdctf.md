@@ -1,7 +1,7 @@
 ---
 title: jdctf-pwn克莱恩特
 date: 2024-08-08 11:00:00
-tags: 赛后诸葛亮系列
+tags: 赛后诸葛亮
 categories: ctf
 ---
 # 比赛当天情况
