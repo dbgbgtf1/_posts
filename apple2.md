@@ -24,7 +24,7 @@ exit
 ![exit_call__run_exit_handlers](exit_call__run_exit_handlers.png)
 这里没有任何需要满足的条件，从图中右上源码上也可看出
 ### __run_exit_handlers->IO_cleanup
-![run_exit_handlers_call_io_cleanup](run_exit_handlers_call_io_cleanup.png)
+![exit_handlers_call_io_cleanup](exit_handlers_call_io_cleanup.png)
 这里依然没有任何需要满足的条件
 ### _IO_cleanup->_IO_flush_all_lockp
 ![io_cleanup_call_io_flush_all_lockp](io_cleanup_call_io_flush_all_lockp.png)
