@@ -137,4 +137,4 @@ int main()
 ```
 # 小表格
 有时候在查找_IO_FILE_plus以及_wide_data对应的值的时候比较麻烦，就搞了一个小表格
-![IO_FILE](IO_FILE.png)
+![io_file](io_file.png)
