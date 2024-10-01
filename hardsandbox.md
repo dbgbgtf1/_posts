@@ -1,7 +1,7 @@
 ---
 title: 2024羊城杯hardsandbox
 date: 2024-9-10
-categories: ctf
+categories: sandbox
 tag: 赛后诸葛亮
 ---
 # 前言

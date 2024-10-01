@@ -1,8 +1,8 @@
 ---
 title: 一道异或手搓shellcode
 date: 2024-9-1
+categories: shellcode
 tags: 赛后诸葛亮
-categories: ctf
 ---
 # 审题
 [题目附件](./pwn)

@@ -1,8 +1,8 @@
 ---
 title: 2024羊城杯logger
 date: 2024-8-30
+categories: c++异常机制
 tags: 赛后诸葛亮
-categories: ctf
 ---
 # 前言
 当时比赛我没看这题，在搞一个`houseofapple2`的`orw`，由于利用比较麻烦，以及我太菜没搞过类似`io的orw`，导致浪费太久时间。

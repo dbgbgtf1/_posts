@@ -1,8 +1,8 @@
 ---
 title: houseofminho
 date: 2024-08-01 11:29:00
-tags: houseof
-categories: ctf
+categories: housoef
+tags: 研究记录
 ---
 # 前言
 `houseofminho`最早是在宁波赛上遇到的，没想到这玩意给了我迎头痛击。当时老觉得这些过于复杂的堆利用有点钻牛角尖了，实战意义不大，但是现在想想，还是得认真学这些。

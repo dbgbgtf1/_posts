@@ -1,8 +1,8 @@
 ---
 title: 记录一次printf的背刺
 date: 2024-8-26
+categories: printf
 tags: 赛后诸葛亮
-categories: ctf
 ---
 > 感谢rocket师傅提供的解题思路！！https://rocketmadev.github.io/2024/09/04/clock/
 

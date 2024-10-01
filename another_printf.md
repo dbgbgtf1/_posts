@@ -1,8 +1,8 @@
 ---
 title: printf格式化的奇思妙想
 date: 2024-9-5
-tags: 奇思妙想
-categories: ctf
+categories: printf
+tags: 研究记录
 ---
 # 起因
 前两天火箭发给我一个奇怪的东西
