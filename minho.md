@@ -1,7 +1,7 @@
 ---
 title: houseofminho
 date: 2024-08-01 11:29:00
-categories: housoef
+categories: houseof
 tags: 研究记录
 ---
 # 前言
