@@ -199,11 +199,9 @@ io.interactive()
     b. Pwn.py做的第二件事就是计算好attach到start.sh并向返回地址注入刚刚计算好的shellcode
 
 4. 在Pwn.py运行后, 可以手动gdb attach上该start.sh进程, 检查shellcode写入情况(图中可以看到shellcode已经写入成功, 但是此时由于该进程仍在等待sleep进程结束, 所以不会从内核态返回到用户态执行你的shellcode)
-![attachsh](attachsh.png)
 ![shwait4](shwait4.png)
 
 5. 在本地复现时, 我偷懒没有写通过attach来kill掉sleep进程的shellcode, 于是我就通过命令行杀死
-![killsleep](killsleep.png)
 
 6. 在杀死进程后, 可以在gdb上观察, 发现start.sh进程已经可以成功从内核态返回, 并且执行你的shellcode代码
 ![inject_code](inject_code.png)
