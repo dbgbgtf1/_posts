@@ -23,6 +23,18 @@ tag: 赛后诸葛亮
 
 还有一个关键就是HTTP_AUTHORIZATION解析得到的值会作为函数执行的参数, 就等于可以控制参数的执行basement的任意函数了
 
+# 调试技巧
+本题是在docker内运行, 所以必不可少的是gdbserver调试
+主要需要调试的程序有login.cgi, basement两个.
+其中basement还好说, 毕竟是长时间运行的, 只要在docker attach到basement进程即可
+
+我刚开始没想到怎么调试login.cgi, 后来火箭提醒我可以设置一个prelogin.cgi, 其中内容写
+```sh
+#!/bin/bash
+gdbserver :9999 /usr/cgi-bin/login.cgi
+```
+这样每次需要调试login.cgi时, 就访问prelogin.cgi, 然后在docker外部启动gdb, 使用命令target remote:9999即可
+
 # 利用方式
 不得不说太神奇了, Linux仙人火箭用basement的iperf3做到了向acme.sh文件中写入命令, 然后再用basement中执行acme.sh命令的函数触发, 就可以做到命令执行
 示例:
